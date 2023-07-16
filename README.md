@@ -57,12 +57,13 @@ $ docker-compose --version
 ```
 * **
 ### Setup for Docker compose spring boot app
+* clone this repo and build it.
 
 * Create docker image 
 ```agsl
  docker build -t spring-boot-mysql-app .
 ```
-* Create docker container by using docker compose file
+* Create docker container by using docker-compose file
 ```agsl
 docker-compose up
 
