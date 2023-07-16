@@ -68,7 +68,7 @@ docker-compose up
 
 docker-compose up -d  (deattached mode)
 ```
-<img src='/images/img_2.png' height="200" width="300">
+<img src='spring-boot-mysql-docker-compose-main/images/img_2.png' height="200" width="900">
 
 ### Checking Databse 
 * login into shell either by using docker desktop or by using cmd
@@ -79,7 +79,7 @@ docker exec -it mysql-docker bash
 ```agsl
 mysql -uroot -proot
 ```
-<img src='/images/img_1.png' height="200" width="300">
+<img src='spring-boot-mysql-docker-compose-main/images/img_1.png' height="200" width="400">
 
 ### Project Output
-<img src='/images/img_3.png' height="300" width="300">
+<img src='spring-boot-mysql-docker-compose-main/images/img_3.png' height="400" width="400">
