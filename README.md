@@ -1,55 +1,85 @@
 
-## How to Dockerize Spring Boot Application
-
-
-### Spring Boot application will be packaged as jar file
+## How to Dockerize Spring Boot Application By Docker Compose
 * **
-    ``` 
-     <packaging>jar</packaging>
-    <finalName>spring-boot-docker-app</finalName>
-    ```
-* In pom.xml file packaing must be present 
-* finalName Of App will be same present inside the dockerFile.
-* * **
+ 
+###  What is Docker Compose
+Docker Compose is a tool which is used to manage multi-container based application.
 
-### To run Spring Boot application we need to run jar file
+We can create multiple containers at a time by using Docker Compose.
+
+Using Docker Compose we can define dependencies among the containers
+
+	Ex: App Container Depends On DB Container
+
+We will provide containers information to Docker Compose tool using
+docker-compose.yml
+
+Docker compose not created the docker image that why we need to create docker image first, then by using docker compose we create a docker container.
+
+Docker Compose yml file contains below elements
+
+	version: It represents version number
+
+	services: It represents containers information
+
+	volumes: It represents storage
+
+	network: It represents connectivity
+
+
+### Create Docker Container using Docker Compose YML
+````
+$ docker-compose up
+
+$ docker-compose down
+
+$ docker-compose stop
+
+$ docker-compose start
+
+$ docker-compose ps
+````
+
+### Docker Compose Setup 
+
+
+### Download docker compose
 ```
-mvn clean package
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
-
-### Spring Boot provides embedded server for web applications
-
-    GIT Hub repo : https://github.com/ashokitschool/spring-boot-docker-app.git
-
-### Below is the Dockerfile for Spring Boot Application
+### Give permissions
 ```
-FROM open-jdk:11
-
-COPY target/app.jar /usr/app/
-
-WORKDIR /usr/app/
-
-EXPOSE 8080
-
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+$ sudo chmod +x /usr/local/bin/docker-compose
 ```
-### Create docker image of Spring boot app by using dockerfile
-
+### How to check docker compose is installed or not
 ```
-docker build -t sbootapp .
+$ docker-compose --version
 ```
-*  '.' denote the current directory 
-*  Execute the above cmd in the directory where dockerfile is present.
+* **
+### Setup for Docker compose spring boot app
 
-### Run the docker image 
+* Create docker image 
 ```agsl
-docker run -d -p 9090:8080 sbootapp 
+ docker build -t spring-boot-mysql-app .
 ```
-* -d detached mode
-* -p define the port 
-* spring boot app run at 8080 port
-* we run the container at 9090 port
-* sbootapp is docker image name
+* Create docker container by using docker compose file
+```agsl
+docker-compose up
 
-### Architecture
-<img src='/images/img.png' height='100' width='100'>
+docker-compose up -d  (deattached mode)
+```
+<img src='/images/img_2.png' height="200" width="300">
+
+### Checking Databse 
+* login into shell either by using docker desktop or by using cmd
+```agsl
+docker exec -it mysql-docker bash
+```
+* login into shell
+```agsl
+mysql -uroot -proot
+```
+<img src='/images/img_1.png' height="200" width="300">
+
+### Project Output
+<img src='/images/img_3.png' height="300" width="300">
